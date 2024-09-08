@@ -1,0 +1,42 @@
+
+spring:
+  application:
+    name: grading-api
+  datasource:
+    url: jdbc:postgresql://localhost:5432/grading_system
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+      pool-name: GradingPool
+  docker:
+    compose:
+      enabled: false
+      start:
+        command: up
+        skip: if_running
+        log-level: INFO
+      stop:
+        command: down
+      profiles:
+        active: dev
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+  data:
+    jpa:
+      repositories:
+        enabled: true
+server:
+  port: 8085
+  servlet:
+    context-path: /api/v1
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
