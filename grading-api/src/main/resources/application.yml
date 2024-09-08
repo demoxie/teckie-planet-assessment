@@ -1,42 +1,19 @@
 
 spring:
-  application:
-    name: grading-api
   datasource:
-    url: jdbc:postgresql://localhost:5432/grading_system
-    username: postgres
-    password: postgres
-    driver-class-name: org.postgresql.Driver
-    hikari:
-      maximum-pool-size: 5
-      connection-timeout: 30000
-      idle-timeout: 600000
-      max-lifetime: 1800000
-      pool-name: GradingPool
-  docker:
-    compose:
-      enabled: false
-      start:
-        command: up
-        skip: if_running
-        log-level: INFO
-      stop:
-        command: down
-      profiles:
-        active: dev
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://postgres:5434/grading_system}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:postgres}
+    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.postgresql.Driver}
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
-    open-in-view: false
-  data:
-    jpa:
-      repositories:
-        enabled: true
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+    show-sql: ${SPRING_JPA_SHOW_SQL:true}
+    open-in-view: ${SPRING_JPA_OPEN_IN_VIEW:false}
 server:
-  port: 8085
+  port: ${SPRING_SERVER_PORT:8085}
   servlet:
-    context-path: /api/v1
+    context-path: ${SPRING_SERVLET_CONTEXT_PATH:/api/v1}
 springdoc:
   swagger-ui:
-    path: /swagger-ui.html
+    path: ${SPRINGDOC_SWAGGER_UI_PATH:/swagger-ui.html}

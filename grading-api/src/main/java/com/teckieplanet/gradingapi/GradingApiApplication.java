@@ -6,7 +6,6 @@ import com.teckieplanet.gradingapi.repository.SubjectRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.context.annotation.Bean;
 import com.teckieplanet.gradingapi.entity.Subject;
@@ -16,7 +15,6 @@ import java.util.List;
 
 @SpringBootApplication
 @EnableTransactionManagement
-@EnableJpaRepositories
 @EnableJpaAuditing
 public class GradingApiApplication {
 
